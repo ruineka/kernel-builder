@@ -13,4 +13,4 @@ docker pull archlinux:base-devel
 docker build --no-cache -f "${dockerfile}" -t kernel-builder ${work_dir}
 
 # make the container build the iso
-exec docker run --privileged --rm -v ${work_dir}:/root/build -h kernel-builder kernel-builder ./build-kernel.sh
+exec docker run --privileged --rm -v ${work_dir}:/root/output -h kernel-builder kernel-builder ./build-kernel.sh
