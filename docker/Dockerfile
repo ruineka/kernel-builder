@@ -16,6 +16,7 @@ RUN useradd --shell=/bin/false build && usermod -L build
 RUN echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 USER root
+cp -r /root/output/* /home/build/
 RUN pacman --noconfirm -Sy git base-devel
 USER build
 RUN makepkg -si PKGBUILD
