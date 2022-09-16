@@ -14,8 +14,8 @@ output_dir="${work_dir}/output"
 # create output directory if it doesn't exist yet
 rm -rf "${output_dir}"
 mkdir -p "${output_dir}"
-chmod 777 ${output_dir}
-sudo -u build bash -c "makepkg -si ${output_dir}/PKGBUILD"
+cp ${output_dir} /home/build/output
+sudo -u build bash -c "makepkg -si ~/output/PKGBUILD"
 
 # allow git command to work
 git config --global --add safe.directory "${work_dir}"

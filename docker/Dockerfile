@@ -12,7 +12,7 @@ ENV BUILD_USER "build"
 
 ENV GNUPGHOME  "/etc/pacman.d/gnupg"
 
-RUN useradd --no-create-home --shell=/bin/false build && usermod -L build
+RUN useradd --shell=/bin/false build && usermod -L build
 RUN echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN pacman --noconfirm -Sy git base-devel
