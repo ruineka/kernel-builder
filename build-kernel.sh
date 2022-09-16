@@ -14,10 +14,8 @@ output_dir="${work_dir}/output"
 # create output directory if it doesn't exist yet
 rm -rf "${output_dir}"
 mkdir -p "${output_dir}"
-
-https://github.com/ruineka/linux.git $output_dir
-
-sudo -u build bash -c `cd ~ && makepkg -si $output_dir/PKGBUILD`
+sudo -u build bash -c "whoami"
+sudo -u build bash -c "makepkg -si $output_dir/PKGBUILD"
 
 # allow git command to work
 git config --global --add safe.directory "${work_dir}"
