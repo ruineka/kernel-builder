@@ -13,4 +13,4 @@ ENV BUILD_USER "build"
 ENV GNUPGHOME  "/etc/pacman.d/gnupg"
 
 
-ADD kernel-builder /root/output
+ADD kernel-builder /output
