@@ -1,0 +1,50 @@
+name: Kernel Builder
+on: push
+jobs:
+  build:
+    name: Kernel builder
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Change directory
+        run: cd $GITHUB_WORKSPACE
+      - name: Build KERNEL
+        id: build_kernel
+        run: ./build-iso-docker.sh
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.build_kernel.outputs.version }}_${{ steps.build_kernel.outputs.id }}
+          release_name: ${{ steps.build_kernel.outputs.version }} (${{ steps.build_kernel.outputs.id }})
+          draft: false
+          prerelease: true
+      - name: Upload Kernel
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./output/${{ steps.build_kernel.outputs.kernel }}
+          asset_name: ${{ steps.build_kernel.outputs.kernel }}
+          asset_content_type: application/x-zstd-compressed-tar
+      - name: Upload Kernel-Headers
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./output/${{ steps.build_kernel.outputs.kernel-headers }}
+          asset_name: ${{ steps.build_kernel.outputs.kernel-headers}}
+          asset_content_type: application/x-zstd-compressed-tar
+      - name: Upload Kernel-Docs
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./output/${{ steps.build_kernel.outputs.kernel-docs }}
+          asset_name: ${{ steps.build_kernel.outputs.kernel-docs }}
+          asset_content_type: application/x-zstd-compressed-tar
