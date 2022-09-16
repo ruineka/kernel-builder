@@ -15,9 +15,10 @@ ENV GNUPGHOME  "/etc/pacman.d/gnupg"
 RUN useradd --shell=/bin/false build && usermod -L build
 RUN echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+RUN pacman -Sy git base-devel
 RUN mkdir /home/build
 RUN chmod 777 /home/build
-RUN su - build -c "git clone https://github.com/ruineka/linux.git /home/build/linux"
+RUN git clone https://github.com/ruineka/linux.git /home/build
 RUN su - build -c "cd /home/build/linux && makepkg -f"
 
 ADD output /root/output
