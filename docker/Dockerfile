@@ -12,5 +12,5 @@ ENV BUILD_USER "build"
 
 ENV GNUPGHOME  "/etc/pacman.d/gnupg"
 
-#Copy archiso files from this git repo
-ADD kernel-builder /root/kernel-builder
+
+ADD kernel-builder /root/output
