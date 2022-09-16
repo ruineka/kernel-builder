@@ -10,7 +10,7 @@ jobs:
         run: cd $GITHUB_WORKSPACE
       - name: Build KERNEL
         id: build_kernel
-        run: ./build-iso-docker.sh
+        run: ./build-kernel-docker.sh
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
