@@ -5,7 +5,7 @@ FROM archlinux:base-devel
 MAINTAINER Wouter Wijsman
 
 #set working dir, you'll have to mount something yourself here
-WORKDIR /root/kernel-builder
+WORKDIR /root/output
 
 # Build pikaur packages as the 'build' user
 ENV BUILD_USER "build"
@@ -13,4 +13,4 @@ ENV BUILD_USER "build"
 ENV GNUPGHOME  "/etc/pacman.d/gnupg"
 
 
-ADD kernel-builder /output
+ADD output /root/output
