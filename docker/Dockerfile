@@ -18,6 +18,6 @@ RUN echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 USER root
 RUN pacman --noconfirm -Sy git base-devel
 USER build
-makepkg -si /root/output/PKGBUILD
+RUN makepkg -si /root/output/PKGBUILD
 
 ADD output /root/output
