@@ -17,7 +17,7 @@ RUN echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN mkdir /home/build
 RUN chmod 777 /home/build
-RUN su - build -c "git clone -b orientation-dmi-fixes https://github.com/ruineka/linux.git /tmp/linux" && \
-    su - build -c "cd /tmp/linux && makepkg -f"
+RUN su - build -c "git clone https://github.com/ruineka/linux.git /home/build/linux"
+RUN su - build -c "cd /home/build/linux && makepkg -f"
 
 ADD output /root/output
