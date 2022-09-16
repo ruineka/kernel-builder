@@ -11,10 +11,9 @@ work_dir="$(realpath $0|rev|cut -d '/' -f2-|rev)"
 # configuration variables for the iso
 output_dir="${work_dir}/output"
 
-# create output directory if it doesn't exist yet
-rm -rf "${output_dir}"
-mkdir -p "${output_dir}"
-
+su - build -c "cd /home/build"
+su - build -c "makepkg -f"
+cp -r /home/build/linux* /root/output
 # allow git command to work
 git config --global --add safe.directory "${work_dir}"
 

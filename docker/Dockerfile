@@ -18,8 +18,7 @@ RUN echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN pacman --noconfirm -Sy git base-devel
 RUN mkdir /home/build
 RUN chmod 777 /home/build
-RUN git clone https://github.com/ruineka/linux.git /home/build
-RUN su - build -c "cd /home/build/linux && makepkg -f"
-RUN cp -r /home/build/linux* /root/output
+RUN cp -r /root/output /home/build
+RUN chmod 777 /home/build/*
 
 ADD output /root/output
