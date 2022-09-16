@@ -17,6 +17,9 @@ RUN echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 USER root
 RUN pacman --noconfirm -Sy git base-devel
+RUN chmod 777 /root/
+RUN chmod 777 /root/output
+RUN chmod 777 /root/output/PKGBUILD
 USER build
 RUN makepkg -si /root/output/PKGBUILD
 
