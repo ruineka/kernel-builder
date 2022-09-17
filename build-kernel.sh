@@ -14,7 +14,7 @@ output_dir="${work_dir}/output"
 cd ${output_dir}
 ls -a
 mkdir /home/build/
-su - build -c "makepkg -f"
+su - build -c "makepkg -f PKGBUILD"
 
 # allow git command to work
 git config --global --add safe.directory "${work_dir}"
