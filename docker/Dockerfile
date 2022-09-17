@@ -16,9 +16,5 @@ RUN useradd --shell=/bin/false build && usermod -L build
 RUN echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN pacman --noconfirm -Sy git base-devel
-RUN mkdir /home/build
-RUN chmod 777 /home/build
-RUN cp -r /root/output /home/build
-RUN chmod 777 /home/build/*
 
 ADD output /root/output
