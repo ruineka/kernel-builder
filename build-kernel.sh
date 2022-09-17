@@ -13,6 +13,7 @@ output_dir="${work_dir}/output"
 
 cd ${output_dir}
 ls -a
+mkdir /home/build/
 su - build -c "makepkg -f"
 
 # allow git command to work
