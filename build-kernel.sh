@@ -13,7 +13,11 @@ output_dir="${work_dir}/output"
 
 cd ${output_dir}
 ls -a
-mkdir /home/build/
+mkdir /tmp/kernel-builder/
+cp PKGBUILD /tmp/kernel-builder/
+cp config /tmp/kernel-builder/
+cd /tmp/kernel-builder/
+
 su - build -c "makepkg -f PKGBUILD"
 
 # allow git command to work
