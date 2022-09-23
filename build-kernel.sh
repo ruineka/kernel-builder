@@ -18,7 +18,7 @@ cp ${output_dir}/PKGBUILD /tmp/kernel-builder/
 cp ${output_dir}/config /tmp/kernel-builder/
 cd /tmp/kernel-builder/
 
-su - build -c "PKGDEST=/tmp/kernel-builder makepkg -f PKGBUILD"
+su - build -c "PKGDEST=${output_dir} makepkg -f PKGBUILD"
 
 # allow git command to work
 git config --global --add safe.directory "${work_dir}"
