@@ -10,8 +10,8 @@ work_dir="$(realpath $0|rev|cut -d '/' -f2-|rev)"
 
 # configuration variables for the iso
 output_dir="${work_dir}/output"
-chmod 777 ${output_dir}
-su - build -c "PKGDEST=${output_dir} makepkg -f PKGBUILD"
+
+su - build -c "PKGDEST=${work_dir} makepkg -f PKGBUILD"
 
 # allow git command to work
 git config --global --add safe.directory "${work_dir}"
