@@ -10,14 +10,7 @@ work_dir="$(realpath $0|rev|cut -d '/' -f2-|rev)"
 
 # configuration variables for the iso
 output_dir="${work_dir}/output"
-
-cd ${output_dir}
-ls -a
-su - build -c "mkdir /tmp/kernel-builder/"
-cp ${output_dir}/PKGBUILD /tmp/kernel-builder/
-cp ${output_dir}/config /tmp/kernel-builder/
-cd /tmp/kernel-builder/
-
+chmod 777 ${output_dir}
 su - build -c "PKGDEST=${output_dir} makepkg -f PKGBUILD"
 
 # allow git command to work
